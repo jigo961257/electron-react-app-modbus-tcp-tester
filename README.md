@@ -42,7 +42,7 @@ A modern Electron application template with React, Vite, TypeScript, and Tailwin
 
 ## In-Built Features
 
-🔹 [Conveyor](lib/conveyor/README.md) - Type-safe inter-process communication with Zod validation.<br />
+🔹 [Conveyor](lib/conveyor/IPC_README.md) - Type-safe inter-process communication with Zod validation.<br />
 🔹 Custom Window Titlebar & Menus - Style the window titlebar and menus as you want.<br />
 🔹 Clean Project Structure - Separation of main and renderer processes.<br />
 🔹 Resources Protocol - Access resources folder via `res://` protocol.<br />
