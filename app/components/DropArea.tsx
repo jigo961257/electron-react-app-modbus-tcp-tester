@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react'
 
 const pollRegister = async (device: { id: string; ip: string; port: number }, setDeviceStatus: (id: string, status: boolean, rpm: number) => void) => {
   try {
-    await window.conveyor.modbus.connect(device.ip, device.port)
+    await window.conveyor.modbus.connect(device.ip, device.port, Number(device.id))
     const values = await window.conveyor.modbus.readHoldingRegisters(6, 1)
     const rpmValue = await window.conveyor.modbus.readHoldingRegisters(5, 2)
     const rpm = rpmValue[0]

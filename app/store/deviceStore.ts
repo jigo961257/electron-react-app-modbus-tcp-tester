@@ -47,7 +47,9 @@ export const useDeviceStore = create<DeviceStore>((set, get) => ({
     if (!device) return
     // Write to register 6 for on/off (1/0)
     try {
-      await window.conveyor.modbus.connect(device.ip, device.port)
+      await window.conveyor.modbus.connect(device.ip, device.port, Number(deviceId))
+      console.log("status to write", status ? 1 : 0);
+      
       await window.conveyor.modbus.writeSingleRegister(6, status ? 1 : 0)
       get().setDeviceStatus(deviceId, status)
     } catch (e) {

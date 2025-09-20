@@ -1,8 +1,8 @@
 import { ConveyorApi } from '@/lib/preload/shared'
 
 export class ModbusApi extends ConveyorApi {
-  connect = (host: string, port: number) =>
-    this.invoke('modbus-connect', { host, port })
+  connect = (host: string, port: number, deviceId: number) =>
+    this.invoke('modbus-connect', { host, port, deviceId })
   disconnect = () =>
     this.invoke('modbus-disconnect')
   readHoldingRegisters = (address: number, length: number) =>

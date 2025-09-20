@@ -5,10 +5,14 @@ let client: ModbusRTU | null = null
 
 export const registerModbusHandlers = () => {
     // @ts-ignore
-    handle('modbus-connect', async ({ host, port }) => {
+    handle('modbus-connect', async ({ host, port, deviceId }) => {
         try {
+            if(!deviceId){
+                throw new Error('Device ID is required');
+            }
             client = new ModbusRTU()
             await client.connectTCP(host, { port })
+            await client.setID(deviceId) // Default slave ID
             return true
         } catch (e) {
             console.error('Modbus connect failed', e)
@@ -36,6 +40,9 @@ export const registerModbusHandlers = () => {
     handle('modbus-read-holding-registers', async ({ address, length }) => {
         try {
             if (!client) throw new Error('Not connected')
+                
+                console.log("get device id", client.getID());
+                
             const data = await client.readHoldingRegisters(address, length)
             return data.data // usually an array of numbers
         } catch (e) {

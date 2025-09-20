@@ -7,6 +7,7 @@ export const modbusIpcSchema = {
       z.object({
         host: z.string(),
         port: z.number(),
+        deviceId: z.number(),
       }),
     ]),
     return: z.boolean(),
